@@ -39,7 +39,7 @@ url="http://api.openweathermap.org/data/2.5/group?id=${list%?}&units=metric&appi
 # move yesterday's file to latest
 if [ -f ${filename} ]
 then
-	mv "${filename}" "${latest}"
+	cp "${filename}" "${latest}"
 fi
 
 # get today's file
