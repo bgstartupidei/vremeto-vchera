@@ -1,22 +1,23 @@
 #!/bin/bash
 
 cities=(
-	725905 # Vidin
-	727221 # Silistra
-	727523 # Ruse
-	729114 # Montana
-	728203 # Pleven
-	727233 # Shumen
-	725993 # V.Tarnovo
-	726050 # Varna
 	727011 # Sofia
-	732770 # Burgas
-	733191 # Blagoevgrad
 	728193 # Plovdiv
+	726050 # Varna
+	732770 # Burgas
+	727523 # Ruse
+	726848 # Stara Zagora
+	728203 # Pleven
 	727079 # Sliven
+	727233 # Shumen
 	725578 # Yambol
-	727447 # Sandanski
+	733191 # Blagoevgrad
+	725993 # V.Tarnovo
+	725905 # Vidin
 	729794 # Kardzaly
+	729114 # Montana
+	727221 # Silistra
+	727447 # Sandanski
 )
 
 # get current hour
@@ -25,6 +26,7 @@ current="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 filename="${current}/${hour}.json"
 public_html="$(realpath ${current}/../public_html/)"
 latest="${public_html}/latest.json"
+translate="${current}/translate.sed"
 
 list=''
 for i in "${cities[@]}"
@@ -41,4 +43,4 @@ then
 fi
 
 # get today's file
-curl -s "${url}" | sed -f translate.sed > "${filename}"
+curl -s "${url}" | sed -f "${translate}" > "${filename}"
